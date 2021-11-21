@@ -17,7 +17,7 @@ export class AuthService {
   public login(user: User) {
     const queryParams: HttpParams = UtilsService.buildQueryParams(user);
 
-    return this.http.get<User[]>('http://localhost:3000/users', {
+    return this.http.get<User[]>('http://localhost:3000/user', {
       params: queryParams,
     });
   }

@@ -29,10 +29,16 @@ export class SigninComponent implements OnInit {
         if (res.length === 0) console.error('User is not correct');
         else {
           if (res[0].rol === 'admin') {
-            sessionStorage.setItem('currentUser', JSON.stringify(res[0]));
+            sessionStorage.setItem(
+              'currentUser',
+              JSON.stringify(res[0].employeeId)
+            );
             this.router.navigate(['administrator']);
           } else {
-            sessionStorage.setItem('currentUser', JSON.stringify(res[0]));
+            sessionStorage.setItem(
+              'currentUser',
+              JSON.stringify(res[0].employeeId)
+            );
             this.router.navigate(['employee']);
           }
         }
