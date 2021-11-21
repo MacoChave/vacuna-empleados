@@ -34,13 +34,7 @@ export class VaccineService {
     );
   }
 
-  public deleteVaccine(employeeId: number) {
-    const params: HttpParams = UtilsService.buildQueryParams({
-      employeeId,
-    });
-
-    return this.http.delete<Vaccine[]>('http://localhost:3000/vaccine', {
-      params,
-    });
+  public deleteVaccine(id: any) {
+    return this.http.delete<Vaccine[]>('http://localhost:3000/vaccine/' + id);
   }
 }

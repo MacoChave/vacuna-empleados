@@ -59,8 +59,15 @@
           />
           <label for="dosis">Dosis</label>
         </div>
-        <div class="form-floating mb-3">
-          <span class="badge bg-Success"> {{ employee.estado }} </span>
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control m-2"
+            id="fecha"
+            placeholder="Fecha de vacunación"
+            formControlName="date"
+          />
+          <label for="date">Fecha de vacunación</label>
         </div>
         <button
           type="submit"

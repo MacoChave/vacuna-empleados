@@ -1,3 +1,5 @@
+import { Vaccine } from './vaccine.model';
+
 export interface Employee {
   id: number;
   first_name: string;
@@ -8,4 +10,5 @@ export interface Employee {
   address?: string;
   phone_number?: number;
   estado: string;
+  vaccine?: Vaccine[];
 }

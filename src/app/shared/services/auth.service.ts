@@ -14,12 +14,28 @@ import { UtilsService } from '../utils/utils.service';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
+  public getUser(employeeId: number) {
+    const params: HttpParams = UtilsService.buildQueryParams({ employeeId });
+
+    return this.http.get<User[]>('http://localhost:3000/user/' + employeeId);
+  }
+
   public login(user: User) {
-    const queryParams: HttpParams = UtilsService.buildQueryParams(user);
+    const params: HttpParams = UtilsService.buildQueryParams(user);
 
     return this.http.get<User[]>('http://localhost:3000/user', {
-      params: queryParams,
+      params,
     });
+  }
+
+  public createUser(user: User) {
+    const params: HttpParams = UtilsService.buildQueryParams(user);
+
+    return this.http.post<User[]>('http://localhost:3000/user', user);
+  }
+
+  public deleteUser(id: any) {
+    return this.http.delete('http://localhost:3000/user/' + id);
   }
 
   private handleError(error: HttpErrorResponse) {

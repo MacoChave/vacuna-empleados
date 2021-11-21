@@ -26,7 +26,11 @@ export class EmployeeService {
   }
 
   public getAllEmployee() {
-    return this.http.get<Employee[]>('http://localhost:3000/employee');
+    // _embed=vaccine
+    const params: HttpParams = new HttpParams().set('_embed', 'vaccine');
+    return this.http.get<Employee[]>('http://localhost:3000/employee', {
+      params,
+    });
   }
 
   public postEmployee(employee: Employee) {
@@ -52,10 +56,6 @@ export class EmployeeService {
   }
 
   public deleteEmployee(id: number) {
-    const params: HttpParams = UtilsService.buildQueryParams({ id });
-
-    return this.http.delete<Employee[]>('http://localhost:3000/employee', {
-      params,
-    });
+    return this.http.delete<Employee[]>('http://localhost:3000/employee/' + id);
   }
 }
