@@ -1,0 +1,52 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Employee } from '../models/employee.model';
+import { UtilsService } from '../utils/utils.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class EmployeeService {
+  constructor(private http: HttpClient) {}
+
+  public getEmployee(id: number) {
+    const params: HttpParams = UtilsService.buildQueryParams({ id: id });
+
+    return this.http.get<Employee[]>('http://localhost:3000/employee', {
+      params,
+    });
+  }
+
+  public getAllEmployee() {
+    return this.http.get<Employee[]>('http://localhost:3000/employee');
+  }
+
+  public postEmployee(employee: Employee) {
+    return this.http.post<Employee[]>(
+      'http://localhost:3000/employee',
+      employee
+    );
+  }
+
+  public putEmployee(id: number, employee: Employee) {
+    return this.http.put<Employee>(
+      'http://localhost:3000/employee/' + id,
+      employee
+    );
+  }
+
+  public patchEmployee(id: number, employee: any) {
+    return this.http.patch<Employee>(
+      'http://localhost:3000/employee/' + id,
+      employee
+    );
+  }
+
+  public deleteEmployee(id: number) {
+    const params: HttpParams = UtilsService.buildQueryParams({ id });
+
+    return this.http.delete<Employee[]>('http://localhost:3000/employee', {
+      params,
+    });
+  }
+}
