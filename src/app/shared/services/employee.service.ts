@@ -10,7 +10,15 @@ export class EmployeeService {
   constructor(private http: HttpClient) {}
 
   public getEmployee(id: number) {
-    const params: HttpParams = UtilsService.buildQueryParams({ id: id });
+    const params: HttpParams = UtilsService.buildQueryParams({ id });
+
+    return this.http.get<Employee[]>('http://localhost:3000/employee', {
+      params,
+    });
+  }
+
+  public getEmployeeByDni(dni: number) {
+    const params: HttpParams = UtilsService.buildQueryParams({ dni });
 
     return this.http.get<Employee[]>('http://localhost:3000/employee', {
       params,
@@ -36,6 +44,7 @@ export class EmployeeService {
   }
 
   public patchEmployee(id: number, employee: any) {
+    console.log(employee);
     return this.http.patch<Employee>(
       'http://localhost:3000/employee/' + id,
       employee
