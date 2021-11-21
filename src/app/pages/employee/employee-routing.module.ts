@@ -8,6 +8,11 @@ const routes: Routes = [
     component: EmployeeComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'vaccine',
+      },
+      {
         path: 'profile',
         loadChildren: () =>
           import('./profile/profile.module').then((m) => m.ProfileModule),
